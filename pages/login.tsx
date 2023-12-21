@@ -52,7 +52,7 @@ const Login: React.FC = () => {
         </form>
         <div className="text-center mt-6">
           <p className="text-sm">
-            Si vous n'avez pas vos identifiants,
+            Si vous n&apos;avez pas vos identifiants,
             <Link href="/contact">
               {" "}
               {/* Assurez-vous que le chemin '/contact' est correct */}
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
         <div className="text-center mt-6">
           <Link href="/">
             <button className="text-blue-600 hover:underline">
-              Retourner à l'accueil
+              Retourner à l&apos;accueil
             </button>
           </Link>
         </div>

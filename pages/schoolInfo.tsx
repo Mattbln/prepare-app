@@ -22,12 +22,12 @@ const SchoolInfo: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Information de l'école</h2>
+      <h2 className="text-2xl font-bold mb-4">Information de l&apos;école</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="schoolName" className="block mb-2">
-            Nom de l'école
+            Nom de l&apos;école
           </label>
           <input
             type="text"
@@ -55,7 +55,7 @@ const SchoolInfo: React.FC = () => {
 
         <div className="mb-6">
           <label htmlFor="type" className="block mb-2">
-            Type d'établissement
+            Type d&apos;établissement
           </label>
           <select
             id="type"
@@ -75,7 +75,7 @@ const SchoolInfo: React.FC = () => {
               type="submit"
               className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
             >
-              Passer à l'étape suivante
+              Passer à l&apos;étape suivante
             </button>
           </Link>
         </div>
