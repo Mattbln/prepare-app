@@ -1,12 +1,24 @@
 // pages/login.tsx
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import fakeDatabase from "./api/fakeDatabase";
 import Link from "next/link";
 
-const Login: React.FC = () => {
-  // La fonction qui gérera la soumission du formulaire
-  const handleLogin = async (event: React.FormEvent) => {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
+  const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
-    // Ici, vous ajouterez la logique pour gérer l'authentification
+
+    const etablissement = fakeDatabase.etablissements[email];
+
+    if (etablissement && etablissement.password === password) {
+      router.push("/schoolInfo");
+    } else {
+      setErrorMessage(" Email ou mot de passe incorrect.");
+    }
   };
 
   return (
@@ -16,6 +28,15 @@ const Login: React.FC = () => {
           Connexion à votre compte
         </h3>
         <form onSubmit={handleLogin}>
+          {errorMessage && (
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold">Erreur :</strong>
+              <span className="block sm:inline">{errorMessage}</span>
+            </div>
+          )}
           <div className="mt-4">
             <div>
               <label className="block" htmlFor="email">
@@ -26,6 +47,8 @@ const Login: React.FC = () => {
                 placeholder="Email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -38,15 +61,15 @@ const Login: React.FC = () => {
                 placeholder="Mot de passe provisoire"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
             <div className="flex items-baseline justify-between">
-              <Link href="/schoolInfo">
-                <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
-                  Se connecter
-                </button>
-              </Link>
+              <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
+                Se connecter
+              </button>
             </div>
           </div>
         </form>

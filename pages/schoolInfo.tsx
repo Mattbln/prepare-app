@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Autocomplete from "react-google-autocomplete";
+import { updateSchoolInfo } from "./api/fakeDatabase";
 
 const SchoolInfo: React.FC = () => {
   const [schoolName, setSchoolName] = useState("");
@@ -11,18 +12,29 @@ const SchoolInfo: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Logique de soumission du formulaire
-    // Par exemple, rediriger vers l'étape suivante :
-    // router.push('/nextStep');
+    const userEmail = "ecole1@example.com"; // Remplacez par l'email de l'établissement connecté
+    updateSchoolInfo(userEmail, {
+      nomEcole: schoolName,
+      adresse: address,
+      typeEtablissement: type,
+    });
+
+    router.push("/diplomes");
   };
 
   const handlePlaceSelect = (place: any) => {
     setAddress(place.formatted_address); // ou la propriété appropriée de l'objet 'place'
+
+    const latitude = place.geometry.location.lat();
+    const longitude = place.geometry.location.lng();
+
+    // Vous pouvez maintenant utiliser ces valeurs de latitude et longitude
+    console.log("Latitude:", latitude, "Longitude:", longitude);
   };
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Information de l&apos;école</h2>
+      <h2 className="text-2xl font-bold mb-4">Informations de l&apos;école</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -47,6 +59,7 @@ const SchoolInfo: React.FC = () => {
             onPlaceSelected={handlePlaceSelect}
             options={{
               componentRestrictions: { country: "fr" },
+              types: ["address"],
             }}
             defaultValue={address}
             className="w-full px-4 py-2 border rounded-md"
