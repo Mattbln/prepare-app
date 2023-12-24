@@ -92,6 +92,13 @@ const SchoolInfo: React.FC = () => {
             </button>
           </Link>
         </div>
+        <div className="text-center mt-6">
+          <Link href="/login">
+            <button className="text-blue-600 hover:underline">
+              Retourner à la page de connexion
+            </button>
+          </Link>
+        </div>
       </form>
     </div>
   );

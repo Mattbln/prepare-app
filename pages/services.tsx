@@ -79,6 +79,11 @@ const ServicesForm = () => {
             </button>
           </Link>
         </div>
+        <div className="text-center mt-6">
+          <Link href="/diplomes">
+            <button className="text-blue-600 hover:underline">Retour</button>
+          </Link>
+        </div>
       </form>
     </div>
   );

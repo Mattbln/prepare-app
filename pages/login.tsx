@@ -8,10 +8,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false); // État pour la case à cocher
   const router = useRouter();
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (!privacyPolicyAccepted) {
+      alert(
+        "Vous devez accepter les politiques de confidentialité pour continuer."
+      );
+      return;
+    }
     const etablissement = fakeDatabase.etablissements[email];
 
     if (etablissement && etablissement.password === password) {
@@ -65,6 +72,30 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+            </div>
+            <div className="mt-4">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox text-blue-600"
+                  checked={privacyPolicyAccepted}
+                  onChange={() =>
+                    setPrivacyPolicyAccepted(!privacyPolicyAccepted)
+                  }
+                  required
+                />
+                <span className="ml-2">
+                  J'accepte la{" "}
+                  <Link href="/PrivacyPolicy">
+                    {" "}
+                    {/* Assurez-vous que le chemin '/contact' est correct */}
+                    <button className="text-blue-600 hover:underline">
+                      {" "}
+                      politique de confidentialité
+                    </button>
+                  </Link>
+                </span>
+              </label>
             </div>
             <div className="flex items-baseline justify-between">
               <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">

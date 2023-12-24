@@ -22,13 +22,18 @@ const Home: React.FC = () => {
         </Link>
       </main>
 
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        Produit avec ❤️ par{" "}
-        <a className="text-blue-600 " href="https://www.oxpium.fr/">
-          &nbsp;Oxpium Agency
-        </a>
+      <footer className=" text-center w-full  border-t">
+       
+      
+          <Link href="/mentions-legales">
+            <p className="text-blue-600 hover:underline">Mentions Légales&nbsp;</p>
+          </Link>{" "}
+          <Link href="/PrivacyPolicy">
+            <p className="text-blue-600 hover:underline">&nbsp;Politique de Confidentialité</p>
+          </Link>
+     
       </footer>
-    </div>
+      </div>
   );
 };
 

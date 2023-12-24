@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Confirmation: React.FC = () => {
   const router = useRouter();
@@ -19,6 +20,11 @@ const Confirmation: React.FC = () => {
       >
         Modifier les Informations
       </button>
+      <div className="text-center mt-6">
+        <Link href="/services">
+          <button className="text-blue-600 hover:underline">Retour</button>
+        </Link>
+      </div>
     </div>
   );
 };
