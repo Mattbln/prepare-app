@@ -37,33 +37,18 @@ const ServicesForm = () => {
 
   const [selectedServices, setSelectedServices] = useState({});
 
-  const handleServiceChange = (service) => {
-    setSelectedServices((prev) => ({
-      ...prev,
-      [service]: !prev[service],
-    }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Traitement des données sélectionnées
-    console.log(selectedServices);
-  };
-
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">
         Services et Installations
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form className="space-y-4">
         {servicesList.map((service, index) => (
           <div key={index} className="flex items-center">
             <input
               type="checkbox"
               id={`service-${index}`}
               name={service}
-              checked={selectedServices[service]}
-              onChange={() => handleServiceChange(service)}
               className="mr-2"
             />
             <label htmlFor={`service-${index}`} className="text-lg">

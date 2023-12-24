@@ -4,20 +4,8 @@ import Link from "next/link";
 const DiplomaForm = () => {
   const [diplomas, setDiplomas] = useState([{ name: "", description: "" }]);
 
-  const handleDiplomaChange = (index, event) => {
-    const newDiplomas = [...diplomas];
-    newDiplomas[index][event.target.name] = event.target.value;
-    setDiplomas(newDiplomas);
-  };
-
   const addDiploma = () => {
     setDiplomas([...diplomas, { name: "", description: "" }]);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Traitement des données
-    console.log(diplomas);
   };
 
   return (
@@ -26,7 +14,7 @@ const DiplomaForm = () => {
         Ajouter des Diplômes et Formations
       </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form className="space-y-4">
         {diplomas.map((diploma, index) => (
           <div
             key={index}
@@ -36,14 +24,12 @@ const DiplomaForm = () => {
               type="text"
               name="name"
               value={diploma.name}
-              onChange={(event) => handleDiplomaChange(index, event)}
               placeholder="Nom du diplôme"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <textarea
               name="description"
               value={diploma.description}
-              onChange={(event) => handleDiplomaChange(index, event)}
               placeholder="Description"
               className="w-full mt-2 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
